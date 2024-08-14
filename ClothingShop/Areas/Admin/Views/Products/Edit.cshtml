@@ -1,0 +1,100 @@
+﻿@model ClothingShop.Models.Product
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Admin.cshtml";
+}
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Chỉnh sửa</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    @using (Html.BeginForm("Edit", "Products", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ProductID)
+
+
+
+                            <div class="form-group">
+                                Tên sản phẩm
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.ProductName)
+                                    @Html.ValidationMessageFor(model => model.ProductName)
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                Giá
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.price)
+                                    @Html.ValidationMessageFor(model => model.price)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Số lượng
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.quantity)
+                                    @Html.ValidationMessageFor(model => model.quantity)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Mô tả
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DecriptionPro)
+                                    @Html.ValidationMessageFor(model => model.DecriptionPro)
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Loại sản phẩm
+                                <div class="col-md-10">
+                                    @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "" })
+                                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                Nhà sản xuất
+                                <div class="col-md-10">
+                                    @Html.DropDownList("IDnsx", null, htmlAttributes: new { @class = "" })
+                                    @Html.ValidationMessageFor(model => model.IDnsx, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                Hình ảnh
+                                <div class="col-md-10">
+                                    <img src="~/Images/@Model.ImagePro" style="width:30%;height:30%" />
+                                    <input type="file" name="imageProduct" />
+                                    @Html.HiddenFor(model => model.ImagePro)
+
+                                    @Html.ValidationMessageFor(model => model.ImagePro, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Lưu" class="btn btn-success" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <a href="@Url.Action("Index")" class="btn btn-primary">Trở về</a>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

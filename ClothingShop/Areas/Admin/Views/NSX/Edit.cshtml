@@ -1,0 +1,48 @@
+﻿@model ClothingShop.Models.NSX
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Chỉnh sửa Nhà sản xuất</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    @using (Html.BeginForm("Edit", "NSX", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.IDnsx)
+
+
+
+                            <div class="form-group">
+                                Tên NSX
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TenNSX)
+                                    @Html.ValidationMessageFor(model => model.TenNSX)
+                                </div>
+                            </div>
+                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Lưu" class="btn btn-success" />
+                                            </div>
+                                        </div>}
+                    <a href="@Url.Action("Index")" class="btn btn-primary">Trở về</a>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,58 @@
+﻿@model ClothingShop.Models.Customer
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Admin.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Bạn có chắc chắn xóa khách hàng này ?</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Email
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.EmailCus)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Password)
+                        </dd>
+
+                        <dt>
+                            Tên
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.CustomerName)
+                        </dd>
+
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-danger" />
+                            <a href="@Url.Action("Index")" class="btn btn-primary">Trở về</a>
+                        </div>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
